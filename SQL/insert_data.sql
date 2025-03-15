@@ -37,8 +37,8 @@ INSERT INTO Fly (registreringsnummer, produsentnavn, serienummer, navn, flytypeN
 ('LN-WIA', 'De Havilland Canada', 359, 'Nordland', 'Dash-8 100', 'WF', 1993),
 ('LN-WIL', 'De Havilland Canada', 298, 'Narvik', 'Dash-8 100', 'WF', 1995);
 
---Brukstilfelle 3
 
+--Brukstilfelle 3
 INSERT INTO Flyrute (flyrutenummer, startFlyplass, endeFlyplass, ukedagskode, planlagtAvgangstid,
                     planlagtAnkomsttid, oppstartDato, sluttDato, flyselskapskode, flytype) VALUES 
 ('WF1311', 'TRD', 'BOO', '12345', '15:15:00', '16:20:00', ?, NULL, 'WF', 'Dash-8 100'),
@@ -83,11 +83,25 @@ INSERT INTO Flyrutepris (flyrutenummer, startFlyplass, endeFlyplass, billettkate
 ('SK332', 'TRD', 'SVG', 'økonomi', 1700),
 ('SK332', 'TRD', 'SVG', 'budsjett', 1000);
 
---Brukstilfelle 4
 
+--Brukstilfelle 4
 INSERT INTO Flyvning (flyrutenummer, status, loepenummer, flyregistreringsnummer, dato) VALUES
 ('WF1302', 'planned', NULL, NULL, 2025-04-01),
 ('DY753', 'planned', NULL, NULL, 2025-04-01),
 ('SK888', 'planned', NULL, NULL, 2025-04-01);
 
--- Vi har ikke fått vite oppstartdato på flyruter eller hvilke fly som skal fly hvilke flyvninger.
+--Vi har ikke fått vite oppstartdato på flyruter eller hvilke fly som skal fly hvilke flyvninger.
+
+
+--Brukstilfelle 5 
+SELECT 
+    Flyselskap.navn, 
+    Fly.flytypeNavn
+    COUNT(fly.registreringsnummer) AS antall_fly
+    
+FROM 
+    Flyselskap INNER JOIN Fly ON Flyselskap.flyselskapskode = Fly.flyselskapskode
+
+GROUP BY 
+    Flyselskap.navn, fly.flytypeNavn
+;
