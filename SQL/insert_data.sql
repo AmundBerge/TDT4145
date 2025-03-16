@@ -8,15 +8,10 @@ INSERT INTO Flyplass (flyplasskode, navn) VALUES
 
 
 --Brukstilfelle 2
-INSERT INTO Flyprodusent (navn, nasjonalitet, stiftelsesaar) VALUES
-('The Boeing Company', 'USA', 1916),
-('Airbus Group', 'Frankrike', 1970),
-('De Havilland Canada', 'Canada', 1928);
-
 INSERT INTO Flyselskap (Flyselskapskode, navn) VALUES
 ('DY', 'Norwegian'), 
 ('SK', 'SAS'), 
-('WF', 'Widerøe'); 
+('WF', 'Widerøe'), 
 
 INSERT INTO Flytype (navn, produsentnavn, foersteProduksjonsaar, sisteProduksjonsaar) VALUES
 ('Boeing 737 800', 'The Boeing Company', 1997, 2020),
@@ -43,7 +38,7 @@ INSERT INTO Fly (registreringsnummer, produsentnavn, serienummer, navn, flytypeN
 ('LN-WIL', 'De Havilland Canada', 298, 'Narvik', 'Dash-8 100', 'WF', 1995);
 
 
-INSERT INTO Rad (flytypeNavn, radNummer, noedutgang, antallSeter, bokstavkode) VALUES
+INSERT INTO Rad (flytypeNavn, radNummer, noedutgang, antallSeter, ) VALUES
 ('Boeing 737 800', 1, FALSE, 6, 'ABCXDEF'),
 ('Boeing 737 800', 2, FALSE, 6, 'ABCXDEF'),
 ('Boeing 737 800', 3, FALSE, 6, 'ABCXDEF'),
@@ -132,13 +127,7 @@ INSERT INTO Flyrute (flyrutenummer, startFlyplass, endeFlyplass, ukedagskode, pl
 INSERT INTO Mellomlanding (flyrutenummer, flyplasskode, planlagtAvgangstid, planlagtAnkomsttid) VALUES
 ('SK888', 'BGO', '11:40:00', '11:10:00');
 
-
-INSERT INTO  Billettkategori (type) VALUES
-('budsjett'),
-('økonomi'),
-('premium');
-
-INSERT INTO Flyrutepris (flyrutenummer, startFlyplass, endeFlyplass, billettkategoriType, pris) VALUES
+INSERT INTO Flyrutepris (flyrutenummer, startFlyplass, endeFlyplass, billettkategoriType, pris,) VALUES
 
 ('WF1311', 'TRD', 'BOO', 'premium', 2018),
 ('WF1311', 'TRD', 'BOO', 'økonomi', 899),
@@ -180,3 +169,15 @@ INSERT INTO Flyvning (flyrutenummer, status, loepenummer, flyregistreringsnummer
 --Vi har ikke fått vite oppstartdato på flyruter eller hvilke fly som skal fly hvilke flyvninger.
 
 
+--Brukstilfelle 5 
+SELECT 
+    Flyselskap.navn, 
+    Fly.flytypeNavn
+    COUNT(fly.registreringsnummer) AS antall_fly
+    
+FROM 
+    Flyselskap INNER JOIN Fly ON Flyselskap.flyselskapskode = Fly.flyselskapskode
+
+GROUP BY 
+    Flyselskap.navn, fly.flytypeNavn
+;
