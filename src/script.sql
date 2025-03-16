@@ -1,3 +1,23 @@
+DROP table if EXISTS Flyselskap; 
+DROP table if EXISTS Flyprodusent
+DROP table if EXISTS Flytype
+DROP table if EXISTS Rad
+DROP table if EXISTS Flyflaate
+DROP table if EXISTS Fly
+DROP table if EXISTS Flyplass
+DROP table if EXISTS Flyrute
+DROP table if EXISTS Mellomlanding
+DROP table if EXISTS Flyvning
+DROP table if EXISTS Kunde
+DROP table if EXISTS Fordelsprogram
+DROP table if EXISTS Billettkategori
+DROP table if EXISTS Flyrutepris
+DROP table if EXISTS Billettkjop
+DROP table if EXISTS Reise
+DROP table if EXISTS Delreise
+DROP table if EXISTS Innsjekking
+DROP table if EXISTS InnsjekketBagasje
+
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE Flyselskap (
