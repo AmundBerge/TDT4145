@@ -23,6 +23,7 @@ CREATE TABLE Rad (
     radNummer INT,
     noedutgang BOOLEAN NOT NULL,
     antallSeter INT NOT NULL,
+    bokstavkode VARCHAR(100) NOT NULL, -- nytt attributt for å indikere hvilke seter raden her
     PRIMARY KEY (flytypeNavn, radNummer)
 );
 
@@ -55,7 +56,7 @@ CREATE TABLE Flyrute (
     ukedagskode VARCHAR(7) NOT NULL,
     planlagtAvgangstid TIME NOT NULL,
     planlagtAnkomsttid TIME NOT NULL,
-    oppstartDato DATE NOT NULL,
+    oppstartDato DATE, -- endret fra DATE NOT NULL til bare DATE
     sluttDato DATE,
     flyselskapskode VARCHAR(10) REFERENCES Flyselskap(flyselskapskode),
     flytype VARCHAR(100) REFERENCES Flytype(navn)
