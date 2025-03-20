@@ -47,6 +47,13 @@ CREATE TABLE Rad (
     PRIMARY KEY (flytypeNavn, radNummer)
 );
 
+CREATE TABLE Sete (
+    radNummer INT REFERENCES Rad(radNummer),
+    seteBokstav VARCHAR(1) NOT NULL,
+    erLedig BOOLEAN NOT NULL,
+    PRIMARY KEY (radNummer, seteBokstav)
+);
+
 CREATE TABLE Flyflaate (
     flyselskapskode VARCHAR(10) REFERENCES Flyselskap(flyselskapskode),
     flytype VARCHAR(100) REFERENCES Flytype(navn),
