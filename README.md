@@ -1,4 +1,19 @@
-# TDT4145
+# Gruppe 242
+Medlemmer: Aurora Karlsen, Markus Wathle og Amund Berge
+
+## Oppskrift på hvordan kjøre programmet
+- Eksempel data
+
+## Output fra brukstilfellene
+
+1. 
+2. 
+3. 
+4. 
+5. 
+6. 
+7. 
+8. 
 
 ## Endringer i databasen
 
