@@ -229,3 +229,15 @@ INSERT INTO Flyvning (flyrutenummer, status, loepenummer, flyregistreringsnummer
  (6667, 427, 1110, 'premium', 'B3'),
  (6668, 428, 1110, 'premium', 'C3'),
  (6669, 429, 1110, 'budsjett', 'D9');
+
+ INSERT INTO Sete (loepenummer, setenummer, erLedig) VALUES
+ (1110, 'C1', 0),
+ (1110, 'D1', 0),
+ (1110, 'A2', 0),
+ (1110, 'B2', 0),
+ (1110, 'C2', 0),
+ (1110, 'D2', 0),
+ (1110, 'A3', 0),
+ (1110, 'B3', 0),
+ (1110, 'C3', 0),
+ (1110, 'D9', 0);
