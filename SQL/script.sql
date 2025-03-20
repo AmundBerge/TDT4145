@@ -150,7 +150,7 @@ CREATE TABLE Delreise (
     delreiseID INT PRIMARY KEY,
     loepenummer INT REFERENCES Flyvning(loepenummer),
     billettkategoriType VARCHAR(20) REFERENCES Billettkategori(type),
-    sete VARCHAR(10) REFERENCES Sete(setenummer) -- endret slik at den refererer til sete tabellen
+    sete VARCHAR(4) REFERENCES Sete(setenummer) -- endret slik at den refererer til sete tabellen
 );
 
 CREATE TABLE Innsjekking (
