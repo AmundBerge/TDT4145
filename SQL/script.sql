@@ -47,15 +47,6 @@ CREATE TABLE Rad (
     PRIMARY KEY (flytypeNavn, radNummer)
 );
 
--- Ny tabell for å lagre seteinformasjon
-CREATE TABLE Sete (
-    radNummer INT REFERENCES Rad(radNummer),
-    seteBokstav VARCHAR(1) NOT NULL,
-    erLedig INT NOT NULL CHECK (erLedig IN (0, 1)),
-    flytypeNavn VARCHAR(100) REFERENCES Flytype(navn),
-    PRIMARY KEY (radNummer, seteBokstav, flytypeNavn)
-);
-
 CREATE TABLE Flyflaate (
     flyselskapskode VARCHAR(10) REFERENCES Flyselskap(flyselskapskode),
     flytype VARCHAR(100) REFERENCES Flytype(navn),
@@ -107,6 +98,13 @@ CREATE TABLE Flyvning (
     dato DATE NOT NULL,
     UNIQUE (dato, flyrutenummer)
 );
+
+CREATE TABLE Sete (
+    loepenummer VARCHAR(20) REFERENCES Flyvning(loepenummer),
+    setenummer VARCHAR(4),
+    erLedig INT NOT NULL CHECK (erLedig in (0, 1)),
+    PRIMARY KEY (loepenummer, setenummer)
+)
 
 CREATE TABLE Kunde (
     kundenummer INT PRIMARY KEY,
