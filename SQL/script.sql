@@ -47,6 +47,7 @@ CREATE TABLE Rad (
     PRIMARY KEY (flytypeNavn, radNummer)
 );
 
+-- Ny tabell for å lagre seteinformasjon
 CREATE TABLE Sete (
     radNummer INT REFERENCES Rad(radNummer),
     seteBokstav VARCHAR(1) NOT NULL,
