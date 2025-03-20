@@ -41,7 +41,7 @@ CREATE TABLE Flytype (
 CREATE TABLE Rad (
     flytypeNavn VARCHAR(100) REFERENCES Flytype(navn),
     radNummer INT,
-    noedutgang BOOLEAN NOT NULL,
+    noedutgang INT NOT NULL CHECK (noedutgang IN (0, 1)),
     antallSeter INT NOT NULL,
     bokstavkode VARCHAR(100) NOT NULL, -- nytt attributt for å indikere hvilke seter raden her
     PRIMARY KEY (flytypeNavn, radNummer)
@@ -51,7 +51,7 @@ CREATE TABLE Rad (
 CREATE TABLE Sete (
     radNummer INT REFERENCES Rad(radNummer),
     seteBokstav VARCHAR(1) NOT NULL,
-    erLedig BOOLEAN NOT NULL,
+    erLedig INT NOT NULL CHECK (erLedig IN (0, 1)),
     flytypeNavn VARCHAR(100) REFERENCES Flytype(navn),
     PRIMARY KEY (radNummer, seteBokstav, flytypeNavn)
 );
