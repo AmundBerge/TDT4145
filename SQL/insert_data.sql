@@ -180,7 +180,7 @@ INSERT INTO Flyvning (flyrutenummer, status, loepenummer, flyregistreringsnummer
 --Brukstilfelle 5 
  SELECT 
      Flyselskap.navn, 
-     Fly.flytypeNavn
+     Fly.flytypeNavn,
      COUNT(fly.registreringsnummer) AS antall_fly
  
  FROM 
