@@ -51,7 +51,8 @@ CREATE TABLE Sete (
     radNummer INT REFERENCES Rad(radNummer),
     seteBokstav VARCHAR(1) NOT NULL,
     erLedig BOOLEAN NOT NULL,
-    PRIMARY KEY (radNummer, seteBokstav)
+    flytypeNavn VARCHAR(100) REFERENCES Flytype(navn),
+    PRIMARY KEY (radNummer, seteBokstav, flytypeNavn)
 );
 
 CREATE TABLE Flyflaate (
