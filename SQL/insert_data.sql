@@ -173,8 +173,59 @@ INSERT INTO Flyrutepris (flyrutenummer, startFlyplass, endeFlyplass, billettkate
 
 --Brukstilfelle 4
 INSERT INTO Flyvning (flyrutenummer, status, loepenummer, flyregistreringsnummer, dato) VALUES
-('WF1302', 'planned', NULL, NULL, 2025-04-01),
-('DY753', 'planned', NULL, NULL, 2025-04-01),
-('SK888', 'planned', NULL, NULL, 2025-04-01);
+('WF1302', 'planned', 1110, NULL, 2025-04-01),
+('DY753', 'planned', 1111, NULL, 2025-04-01),
+('SK888', 'planned', 1112, NULL, 2025-04-01);
 
---Vi har ikke fått vite oppstartdato på flyruter eller hvilke fly som skal fly hvilke flyvninger.
+--Brukstilfelle 5 
+ SELECT 
+     Flyselskap.navn, 
+     Fly.flytypeNavn
+     COUNT(fly.registreringsnummer) AS antall_fly
+ 
+ FROM 
+     Flyselskap INNER JOIN Fly ON Flyselskap.flyselskapskode = Fly.flyselskapskode
+ 
+ GROUP BY 
+     Flyselskap.navn, fly.flytypeNavn
+ ;
+
+--Brukstilfelle 7
+ INSERT INTO Kunde (kundenummer, navn, telefonnummer, epostadresse, nasjonalitet) VALUES
+ (999, 'Margunn', '+46 420 69 666', 'margunn69@dabomb.com', 'Sverige');
+ 
+ INSERT INTO Billettkjop (referansenummer, kundenummer, samletPris) VALUES
+ (1,999, 2018),
+ (2,999, 2018),
+ (3,999, 2018),
+ (4,999, 2018),
+ (5,999, 2018),
+ (6,999, 2018),
+ (7,999, 2018),
+ (8,999, 2018),
+ (9,999, 2018),
+ (10,999, 599);
+ 
+ INSERT INTO Reise (referansenummer, reiseID, reisetype) VALUES
+ (1, 6660, 'one-way'),
+ (2, 6661, 'one-way'),
+ (3, 6662, 'one-way'),
+ (4, 6663, 'one-way'),
+ (5, 6664, 'one-way'),
+ (6, 6665, 'one-way'),
+ (7, 6666, 'one-way'),
+ (8, 6667, 'one-way'),
+ (9, 6668, 'one-way'),
+ (10, 6669, 'one-way');
+ 
+ INSERT INTO Delreise (reiseID, delreiseID, loepenummer, billettkategoriType, sete) VALUES 
+ (6660, 420, 1110, 'premium', 'C1'),
+ (6661, 421, 1110, 'premium', 'D1'),
+ (6662, 422, 1110, 'premium', 'A2'),
+ (6663, 423, 1110, 'premium', 'B2'),
+ (6664, 424, 1110, 'premium', 'C2'),
+ (6665, 425, 1110, 'premium', 'D2'),
+ (6666, 426, 1110, 'premium', 'A3'),
+ (6667, 427, 1110, 'premium', 'B3'),
+ (6668, 428, 1110, 'premium', 'C3'),
+ (6669, 429, 1110, 'budsjett', 'D9');
