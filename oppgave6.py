@@ -4,9 +4,9 @@ def hent_flyruter():
     con = sqlite3.connect('SQL/FlyDB.db')
     cursor = con.cursor()
 
-    flyplass = input("Flyplasskode (eks: TRD): ").strip().upper()
-    ukedag = input("Ukedag (Mandag: 1; Søndag: 7): ").strip()
-    avgang_eller_ankomst = input("Avganger/ankomst (A/B): ").strip().upper()
+    flyplass = input("Flyplasskode (eks: TRD): ")
+    ukedag = input("Ukedag (Mandag: 1; Søndag: 7): ")
+    avgang_eller_ankomst = input("Avganger/ankomst (A/B): ")
 
     if avgang_eller_ankomst == "A":
         query = """SELECT Flyrute.flyrutenummer, 
