@@ -5,45 +5,61 @@ def hent_flyruter():
     cursor = con.cursor()
 
     flyplass = input("""Vennligst velg en flyplasskode.
-Bodø Lufthavn. Flyplasskode: BOO
-Bergen lufthavn, Flesland. Flyplasskode: BGO
-Oslo lufthavn, Gardermoen. Flyplasskode: OSL
-Stavanger lufthavn, Sola. Flyplasskode: SVG
-Trondheim lufthavn, Værnes. Flyplasskode: TRD
-> """)
+    Bodø Lufthavn. Flyplasskode: BOO
+    Bergen lufthavn, Flesland. Flyplasskode: BGO
+    Oslo lufthavn, Gardermoen. Flyplasskode: OSL
+    Stavanger lufthavn, Sola. Flyplasskode: SVG
+    Trondheim lufthavn, Værnes. Flyplasskode: TRD
+    > """)
     ukedag = input("""Vennligst velg en ukedag.
-Mandag: 1
-Tirsdag: 2
-Onsdag: 3
-Torsdag: 4
-Fredag: 5
-Lørdag: 6
-Søndag: 7                   
-> """)
+    Mandag: 1
+    Tirsdag: 2
+    Onsdag: 3
+    Torsdag: 4
+    Fredag: 5
+    Lørdag: 6
+    Søndag: 7                   
+    > """)
     avgang_eller_ankomst = input("""Vennligst velg avgang eller ankomst.
-Avgang: A
-Ankomst: B
-> """)
+    Avgang: A
+    Ankomst: B
+    > """)
     if avgang_eller_ankomst == "A":
-        query = """ SELECT Flyrute.flyrutenummer, 
-                        Flyrute.planlagtAvgangstid AS tid, 
-                        Flyrute.startFlyplass AS flyplasskode,
-                        Flyplass.navn AS flyplassnavn
-                    FROM Flyrute
-                    JOIN Flyplass ON Flyrute.startFlyplass = Flyplass.flyplasskode
-                    WHERE Flyrute.ukedagskode LIKE ? 
-                    AND Flyrute.startFlyplass = ?
-                    ORDER BY Flyrute.planlagtAvgangstid;"""
+        query = """ 
+        SELECT
+            Flyrute.flyrutenummer, 
+            Flyrute.planlagtAvgangstid AS tid, 
+            Flyrute.startFlyplass AS flyplasskode,
+            Flyplass.navn AS flyplassnavn
+        FROM 
+            Flyrute
+        JOIN 
+            Flyplass ON Flyrute.startFlyplass = Flyplass.flyplasskode
+        WHERE 
+            Flyrute.ukedagskode LIKE ? 
+        AND 
+            Flyrute.startFlyplass = ?
+        ORDER BY 
+            Flyrute.planlagtAvgangstid;
+        """
     else:
-        query = """ SELECT Flyrute.flyrutenummer, 
-                        Flyrute.planlagtAnkomsttid AS tid, 
-                        Flyrute.endeFlyplass AS flyplasskode,
-                        Flyplass.navn AS flyplassnavn
-                    FROM Flyrute
-                    JOIN Flyplass ON Flyrute.endeFlyplass = Flyplass.flyplasskode
-                    WHERE Flyrute.ukedagskode LIKE ? 
-                    AND Flyrute.endeFlyplass = ?
-                    ORDER BY Flyrute.planlagtAnkomsttid;"""
+        query = """ 
+        SELECT 
+            Flyrute.flyrutenummer, 
+            Flyrute.planlagtAnkomsttid AS tid, 
+            Flyrute.endeFlyplass AS flyplasskode,
+            Flyplass.navn AS flyplassnavn
+        FROM 
+            Flyrute
+        JOIN 
+            Flyplass ON Flyrute.endeFlyplass = Flyplass.flyplasskode
+        WHERE 
+            Flyrute.ukedagskode LIKE ? 
+        AND 
+            Flyrute.endeFlyplass = ?
+        ORDER BY 
+            Flyrute.planlagtAnkomsttid;
+        """
 
     cursor.execute(query, ('%' + ukedag + '%', flyplass))
     resultater = cursor.fetchall()
