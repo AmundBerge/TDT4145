@@ -100,7 +100,7 @@ CREATE TABLE Flyvning (
     UNIQUE (dato, flyrutenummer)
 );
 
-CREATE TABLE Sete (
+CREATE TABLE Sete ( -- Ny tabell for sete
     loepenummer VARCHAR(20) REFERENCES Flyvning(loepenummer),
     setenummer VARCHAR(4),
     erLedig INT NOT NULL CHECK (erLedig in (0, 1)),
