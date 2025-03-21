@@ -10,7 +10,7 @@ def hent_flyruter():
     Oslo lufthavn, Gardermoen. Flyplasskode: OSL
     Stavanger lufthavn, Sola. Flyplasskode: SVG
     Trondheim lufthavn, Værnes. Flyplasskode: TRD
-    > """)
+> """)
     ukedag = input("""Vennligst velg en ukedag.
     Mandag: 1
     Tirsdag: 2
@@ -19,11 +19,11 @@ def hent_flyruter():
     Fredag: 5
     Lørdag: 6
     Søndag: 7                   
-    > """)
+> """)
     avgang_eller_ankomst = input("""Vennligst velg avgang eller ankomst.
     Avgang: A
     Ankomst: B
-    > """)
+> """)
     if avgang_eller_ankomst == "A":
         query = """ 
         SELECT

@@ -10,7 +10,7 @@ def execute_sql_file(db_path, sql_file_path):
 
     con.commit()
     con.close()
-    print("SQL file executed successfully.")
+    print("SQL-filen har blitt lest. ")
 
 if __name__ == "__main__":
     execute_sql_file("FlyDB.db", "res/brukstilfelle4.sql")

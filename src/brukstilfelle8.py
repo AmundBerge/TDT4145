@@ -5,10 +5,14 @@ def find_available_seats(flight_number):
     cursor = con.cursor()
 
     query = """
-        SELECT setenummer
-        FROM Sete
-        WHERE loepenummer = ?
-        AND erLedig = 1
+    SELECT 
+        setenummer
+    FROM 
+        Sete
+    WHERE 
+        loepenummer = ?
+    AND 
+        erLedig = 1
     """
 
     cursor.execute(query, (flight_number,))
@@ -23,12 +27,17 @@ def find_available_seats(flight_number):
         for seat in seats:
             seter.append(seat[0])
     else:
-        print(f"Ingen ledige seter for flyvningen.")
+        print(f"Ingen ledige seter for flyvningen. ")
     
     seter.sort(key=lambda x: (int(x[:-1]), x[-1]))
 
     for seat in seter:
         print(seat)
 
-flight_number = input("Vennligst skriv inn flyvning (løpenummer): ")
+flight_number = input("""Vennligst skriv inn en flyvning.
+    Tilgjengelige løpenumre er:
+    1110
+    1111
+    1112
+> """)
 find_available_seats(flight_number)
